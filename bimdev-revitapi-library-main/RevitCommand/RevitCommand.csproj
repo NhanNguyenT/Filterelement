@@ -10,6 +10,7 @@
 	</PropertyGroup>
 	<Import Project="$(SolutionDir)CommonProjectProperties.prop" />
 	<ItemGroup>
+		<None Remove="0.Command\Model\Form\FilterElementProcesser_Form.xaml" />
 		<None Remove="Library\Image\addsub.png" />
 		<None Remove="Library\Image\add_2.png" />
 		<None Remove="Library\Image\add_3.png" />
@@ -217,6 +218,10 @@
 				<Generator>MSBuild:Compile</Generator>
 			</None>
 		</ItemGroup>-->
+		<Page Include="0.Command\Model\Form\FilterElementProcesser_Form.xaml">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		  <Generator>XamlIntelliSenseFileGenerator</Generator>
+		</Page>
 		<Page Include="Library\Model\Form\UserControl\ComboBoxUC.xaml">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 			<Generator>XamlIntelliSenseFileGenerator</Generator>

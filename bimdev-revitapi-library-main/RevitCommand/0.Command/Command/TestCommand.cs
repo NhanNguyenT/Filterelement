@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Autodesk.Revit.UI;
 using Model.Entity;
+using Model.Form;
+using Model.Data;
 
 namespace Model.RevitCommand
 {
@@ -19,7 +21,7 @@ namespace Model.RevitCommand
             var elements = new FilteredElementCollector(doc, doc.ActiveView.Id).WhereElementIsNotElementType().ToList()
                 .Where(x => x.Category != null);
 
-            var catergories = elements.Select(x => x.Category).Distinct(new Categorycomparer());
+            var catergories = elements.Select(x => x.Category).Distinct(new CategoryComparer());
 
             var inputBuiltInCategories = new List<BuiltInCategory>
             { BuiltInCategory.OST_StructuralFraming, BuiltInCategory.OST_StructuralColumns };
@@ -43,7 +45,7 @@ namespace Model.RevitCommand
 
             var processor = new FilterElementProcessor
             {
-                view = doc.ActiveView,
+                View = doc.ActiveView,
                 BuiltInCategories = new List<BuiltInCategory>
             { BuiltInCategory.OST_StructuralFraming, BuiltInCategory.OST_StructuralColumns }
                
@@ -55,7 +57,20 @@ namespace Model.RevitCommand
         }
     }
 
-    public class Categorycomparer : IEqualityComparer<Category>
+    [Transaction(TransactionMode.Manual)]
+    public class TestCommand3 : RevitCommand
+    {
+        private FilterElementData data => FilterElementData.Instance;
+
+        public override void Execute()
+        {
+            var form = data.Form;   
+            form.ShowDialog();
+
+        }
+    }
+
+    public class CategoryComparer : IEqualityComparer<Category>
     {
         public bool Equals(Category x, Category y)
         {
