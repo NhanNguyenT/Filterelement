@@ -26,10 +26,5 @@ namespace Model.Form
         {
             InitializeComponent();
         }
-
-        private void test_Clicked(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show(Model.Data.FilterElementData.Instance.Processor.Categories!.CombineString(x => x.Name));
-        }
     }
 }
