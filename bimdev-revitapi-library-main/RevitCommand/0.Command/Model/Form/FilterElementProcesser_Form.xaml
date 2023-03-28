@@ -4,10 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:c="clr-namespace:Model.Control" mc:Ignorable="d"
-             x:Name="root" Width="200"  Height="100">
+        xmlns:c="clr-namespace:Model.Control"
+        xmlns:viewmodel="clr-namespace:Model.Data" 
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=viewmodel:FilterElementData}"
+        x:Name="root" Width="600"  Height="300"
+        >
+    <Window.Resources>
+        <ResourceDictionary Source="/RevitCommand;component/Library/Model/Style/Styles.xaml" />
+    </Window.Resources>
     <StackPanel>
         <TextBlock Text="{Binding Processor.View.Name}"/>
-        <ComboBox ItemsSource="{Binding Processor.AllCategories}" DisplayMemberPath="Name"/>
+        <ComboBox ItemsSource="{Binding Processor.AllCatergories}" DisplayMemberPath="Name"/>
+
+        <c:MultiComboBox SelectionMode="Multiple" 
+                                 DisplaySeparator=", "
+                                 ItemsSource="{Binding Processor.AllCatergories}"
+                          DisplayMemberPath="Name"
+                         SelectedItems="{Binding Processor.Categories}"
+                          />
+
+        <Button Click="test_Clicked" >Tset</Button>
     </StackPanel>
 </Window>
+
+<!--xmlns:mco="clr-namespace:Model.Control.MultiComboBox"-->

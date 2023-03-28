@@ -27,6 +27,8 @@ namespace Model.Entity
 
         public List<Category> AllCatergories => allcategories ??= this.GetAllCategories();
 
+        public List<Category> Categories { get; set; } = new List<Category>();
+
         public List<BuiltInCategory>? BuiltInCategories { get; set; }
 
         private IEnumerable<Element>? filterElements;

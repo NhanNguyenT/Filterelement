@@ -10,7 +10,7 @@
              x:Name="root" 
              Visibility="{Binding Visibility}">
     <UserControl.Resources>
-        <ResourceDictionary Source="/HBRevitApp;component/Library/Model/Style/Styles.xaml" />
+        <ResourceDictionary Source="/RevitCommand;component/Library/Model/Style/Styles.xaml" />
     </UserControl.Resources>
     <GroupBox>
         <GroupBox.Header>
@@ -31,7 +31,7 @@
                     <StackPanel Orientation="Horizontal" Visibility="{Binding PickElementsVisibility}">
                         <Button Height="20" Margin="5 0 2 0" Style="{StaticResource ImageButton}"
                                 IsEnabled="{Binding PickElementEnable}">
-                            <Image  Source="/HBRevitApp;component/Library/Image/select_3.png"></Image>
+                            <Image  Source="/RevitCommand;component/Library/Image/select_3.png"></Image>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Click">
                                     <i:InvokeCommandAction Command="{Binding PickElements}"></i:InvokeCommandAction>
