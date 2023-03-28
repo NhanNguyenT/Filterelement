@@ -36,37 +36,17 @@ namespace Model.RevitCommand
 
         }
     }
-    [Transaction(TransactionMode.Manual)]
-    public class TestCommand2 : RevitCommand
-    {
-       
-        public override void Execute()
-        {
-
-            var processor = new FilterElementProcessor
-            {
-                View = doc.ActiveView,
-                BuiltInCategories = new List<BuiltInCategory>
-            { BuiltInCategory.OST_StructuralFraming, BuiltInCategory.OST_StructuralColumns }
-               
-            };
-            var filterElements = processor.FilteredElements;
-
-            sel.SetElement(filterElements);
-
-        }
-    }
 
     [Transaction(TransactionMode.Manual)]
     public class TestCommand3 : RevitCommand
     {
+        protected override bool IsAutoDisposed => false;
         private FilterElementData data => FilterElementData.Instance;
 
         public override void Execute()
         {
-            var form = data.Form;   
+            var form = data.Form;
             form.ShowDialog();
-
         }
     }
 

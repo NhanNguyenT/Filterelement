@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Model.Data;
+using SingleData;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -22,9 +24,23 @@ namespace Model.Form
     /// </summary>
     public partial class FilterElementProcesser_Form : System.Windows.Window
     {
+        private FilterElementData data => FilterElementData.Instance;
+        private RevitData revitData => RevitData.Instance;
+
         public FilterElementProcesser_Form()
         {
             InitializeComponent();
+        }
+
+        private void select_Clicked(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(data.Processor.Categories.CombineString(x => x.Name));
+
+            var sel = revitData.Selection;
+            var filteredElements = data.Processor.FilteredElements;
+
+
+            sel.SetElement(filteredElements);
         }
     }
 }
