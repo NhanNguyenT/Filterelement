@@ -31,15 +31,10 @@ namespace Utility
 
     public static IEnumerable<Element> GetFilteredElements(this FilterElementProcessor q)
         {
-            var doc = revitData.Document;
-            var view = q.View!;
-            var builtInCatergories = q.BuiltInCategories!;
 
-            var elements = new FilteredElementCollector(doc, view.Id).WhereElementIsNotElementType().ToList()
-                //bo qua null
-                .Where(x => x.Category != null);
+            var CatergoryIds = q.CategoryIds!;
 
-            return elements.Where(x => builtInCatergories.Contains((BuiltInCategory)x.Category.Id.IntegerValue));
+            return q.AllElements.Where(x => CatergoryIds.Contains(x.Category.Id));
         }
 
     }

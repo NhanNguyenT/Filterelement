@@ -25,11 +25,11 @@ namespace Model.Entity
 
         private List<Category>? allcategories;
 
-        public List<Category> AllCatergories => allcategories ??= this.GetAllCategories();
+        public List<Category> AllCategories => allcategories ??= this.GetAllCategories();
 
         public List<Category> Categories { get; set; } = new List<Category>();
 
-        public List<BuiltInCategory>? BuiltInCategories { get; set; }
+        public List<ElementId> CategoryIds => this.Categories.Select(x=> x.Id).ToList();
 
         private IEnumerable<Element>? filterElements;
         public IEnumerable<Element> FilteredElements => filterElements ??= this.GetFilteredElements();
