@@ -50,17 +50,21 @@ namespace Model.RevitCommand
 
         }
     }
-
-    public class CategoryComparer : IEqualityComparer<Category>
+    [Transaction(TransactionMode.Manual)]
+    public class TestCommand4 : RevitCommand
     {
-        public bool Equals(Category x, Category y)
+  
+        public override void Execute()
         {
-            return x.Id == y.Id;
-        }
+            var categoryProcesser = new FilterElementProcessor();
+            categoryProcesser.Categories = new List<Category>() { categoryProcesser.AllCategories[0] };
 
-        public int GetHashCode(Category obj)
-        {
-            return obj.Id.IntegerValue;
+            var parameterProcesser = new FilterElementByParameterProcesser
+            {
+                AllElements = categoryProcesser.FilterElementsByCategory
+            };
+            parameterProcesser.Test();
         }
     }
+
 }

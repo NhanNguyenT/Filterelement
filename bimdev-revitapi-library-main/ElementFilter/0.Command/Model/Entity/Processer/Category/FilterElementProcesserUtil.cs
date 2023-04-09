@@ -29,7 +29,7 @@ namespace Utility
             return q.AllElements.Select(x=>x.Category).Distinct(new CategoryComparer()).ToList();
         }
 
-    public static IEnumerable<Element> GetFilteredElements(this FilterElementProcessor q)
+    public static IEnumerable<Element> GetFilterElementsByCategory(this FilterElementProcessor q)
         {
 
             var CatergoryIds = q.CategoryIds!;
@@ -37,5 +37,9 @@ namespace Utility
             return q.AllElements.Where(x => CatergoryIds.Contains(x.Category.Id));
         }
 
+        public static void RefeshGetFilterElementsByCategory(this FilterElementProcessor q)
+        {
+            q.FilterElementsByCategory = null;
+        }
     }
 }
