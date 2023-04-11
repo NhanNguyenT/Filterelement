@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Model.Entity.FilterElementProcessorNS
 {
-    internal class Parameter
+    public class ParameterValue
     {
-        public string? Name { get; set; }
+        public string? Value { get;set; }
 
-        public List<string> Values { get; set; } = new List<string>();
-
+        public List<Autodesk.Revit.DB.Element> Elements { get; set; } = new List<Autodesk.Revit.DB.Element>();
     }
 }

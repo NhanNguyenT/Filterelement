@@ -1,4 +1,5 @@
 ﻿using Autodesk.Revit.DB;
+using Model.ViewModel;
 using SingleData;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using Utility;
 
 namespace Model.Entity
 {
-    public class FilterElementProcessor
+    public class FilterElementProcessor : NotifyClass
     {
         //thuoc tinh : viet hoa chu dau
         //gia tri mac dinh cua view la Activeview
@@ -35,8 +36,22 @@ namespace Model.Entity
         public IEnumerable<Element> FilterElementsByCategory
         {
             get => filterElementsByCategory ??= this.GetFilterElementsByCategory();
-            set => filterElementsByCategory = value;
+            set
+            {
+                filterElementsByCategory = value;
+                this.RefreshParameterProcessor();
+            }
         }
-    
+
+        private FilterElementByParameterProcessor? parameterProcessor;
+        public FilterElementByParameterProcessor ParameterProcessor
+        {
+            get => parameterProcessor ??= this.GetParameterProcesser();
+            set
+            {
+                parameterProcessor = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }
