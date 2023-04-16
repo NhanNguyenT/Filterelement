@@ -9,11 +9,13 @@ using Utility;
 
 namespace Model.Entity
 {
-    public class FilterElementByParameterProcesser
+    public class FilterElementByParameterProcessor
     {
        public IEnumerable<Element>? AllElements { get;set; }
 
         private List<FilterElementProcessorNS.Parameter>? parameters;
         public List<FilterElementProcessorNS.Parameter> Parameters =>this.parameters ??= this.GetParameters();
+
+        public FilterElementProcessorNS.Parameter? SelectedParameter { get; set; }
     }
 }

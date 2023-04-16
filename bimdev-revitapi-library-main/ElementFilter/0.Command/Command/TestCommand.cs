@@ -59,7 +59,7 @@ namespace Model.RevitCommand
             var categoryProcesser = new FilterElementProcessor();
             categoryProcesser.Categories = new List<Category>() { categoryProcesser.AllCategories[0] };
 
-            var parameterProcesser = new FilterElementByParameterProcesser
+            var parameterProcesser = new FilterElementByParameterProcessor
             {
                 AllElements = categoryProcesser.FilterElementsByCategory
             };

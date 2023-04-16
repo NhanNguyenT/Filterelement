@@ -4,6 +4,7 @@ using SingleData;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,10 +39,17 @@ namespace Model.Form
         {
             var sel = revitData.Selection;
 
-            var procesor = data.Processor;
-            procesor.RefeshGetFilterElementsByCategory();
+            //var procesor = data.Processor;
+            //procesor.RefeshGetFilterElementsByCategory();
 
-            sel.SetElement(procesor.FilterElementsByCategory);
+            //sel.SetElement(procesor.FilterElementsByCategory);
+            sel.SetElement(processor.ParameterProcessor.SelectedParameter!.SelectedValue!.Elements);
+        }
+
+        private void refresh_Clicked(object sender, RoutedEventArgs e)
+        {
+            var processor = data.Processor;
+            processor.RefeshGetFilterElementsByCategory();
         }
     }
 }

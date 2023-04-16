@@ -11,22 +11,22 @@ using System.Windows;
 
 namespace Utility
 {
-    public static class FilterElementByParameterProcesserUtil
+    public static class FilterElementByParameterProcessorUtil
     {
-        public static void Test(this FilterElementByParameterProcesser q)
+        public static void Test(this FilterElementByParameterProcessor q)
         {
             var allElements = q.AllElements;
 
             var firstElement = allElements.First();
 
-            var parameters = firstElement.ParametersMap.Cast<Autodesk.Revit.DB.Parameter>();
+            var parameters = firstElement.ParametersMap.Cast<Parameter>();
 
             MessageBox.Show(parameters.CombineString(x => x.Definition.Name));
         }
-        public static List<Model.Entity.FilterElementProcessorNS.Parameter> GetParameters(this FilterElementByParameterProcesser q)
+        public static List<Model.Entity.FilterElementProcessorNS.Parameter> GetParameters(this FilterElementByParameterProcessor q)
         {
             var allElements = q.AllElements!;
-            var parameters = new List<Parameter>();
+            var parameters = new List<Model.Entity.FilterElementProcessorNS.Parameter>();
 
             foreach (var element in allElements)
             {
@@ -35,19 +35,30 @@ namespace Utility
                 {
                     var parameterName = elementParameter.Definition.Name;
                     var parameter = parameters.FirstOrDefault(x => x.Name == parameterName);
-                    if (parameter = null)
+                    if (parameter == null)
                     {
-                        parameter = new Parameter { Name = parameterName };
+                        parameter = new Model.Entity.FilterElementProcessorNS.Parameter{ Name = parameterName };
                         parameters.Add(parameter);
                     }
 
                     var elementParameterValue = elementParameter.AsValueString();
 
                     var parameterValues = parameter.Values;
-                    if (!parameterValues.Contains(elementParameterValue))
+                    var parameterValue = parameterValues.FirstOrDefault(x => x.Value== elementParameterValue);
+                    if(parameterValue == null)
                     {
-                        parameterValues.Add(elementParameterValue);
+                        parameterValue = new Model.Entity.FilterElementProcessorNS.ParameterValue
+                        {
+                            Value = elementParameterValue,
+                        };
+                        parameter.Values.Add(parameterValue);
                     }
+
+                    parameterValue.Elements.Add(element);
+                    //if (!parameterValues.Contains(elementParameterValue))
+                    //{
+                    //    parameterValues.Add(elementParameterValue);
+                    //}
                 }
             }
             return parameters;
