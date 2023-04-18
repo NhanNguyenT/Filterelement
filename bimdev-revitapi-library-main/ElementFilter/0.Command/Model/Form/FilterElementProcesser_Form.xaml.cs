@@ -39,11 +39,11 @@ namespace Model.Form
         {
             var sel = revitData.Selection;
 
-            //var procesor = data.Processor;
+            var processor = data.Processor;
             //procesor.RefeshGetFilterElementsByCategory();
 
-            //sel.SetElement(procesor.FilterElementsByCategory);
-            sel.SetElement(processor.ParameterProcessor.SelectedParameter!.SelectedValue!.Elements);
+            // sel.SetElement(procesor.FilterElementsByCategory);
+             sel.SetElement(processor.ParameterProcesser.SelectedParameter!.SelectedValue!.Elements);
         }
 
         private void refresh_Clicked(object sender, RoutedEventArgs e)

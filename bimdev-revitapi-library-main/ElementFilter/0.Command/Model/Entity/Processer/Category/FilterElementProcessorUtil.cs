@@ -52,9 +52,9 @@ namespace Utility
                 AllElements= q.FilterElementsByCategory
             };   
         }
-        public static void RefreshParameterProcessor(this FilterElementByParameterProcessor q)
+        public static void RefreshParameterProcessor(this FilterElementProcessor q)
         {
-           q.ParameterProcessor = null;
+           q.ParameterProcesser = null;
 
             //MessageBox.Show("parameter dc refresh");
         }

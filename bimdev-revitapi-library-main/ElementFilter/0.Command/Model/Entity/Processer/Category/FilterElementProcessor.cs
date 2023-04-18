@@ -39,7 +39,7 @@ namespace Model.Entity
             set
             {
                 filterElementsByCategory = value;
-                this.RefreshParameterProcessor;
+                this.RefreshParameterProcessor();
             }
         }
         private FilterElementByParameterProcessor? parameterProcesser;
