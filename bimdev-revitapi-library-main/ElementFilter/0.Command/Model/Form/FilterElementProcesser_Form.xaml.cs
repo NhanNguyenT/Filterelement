@@ -39,7 +39,7 @@ namespace Model.Form
         {
             var sel = revitData.Selection;
 
-            //var procesor = data.Processor;
+            var processor = data.Processor;
             //procesor.RefeshGetFilterElementsByCategory();
 
             //sel.SetElement(procesor.FilterElementsByCategory);

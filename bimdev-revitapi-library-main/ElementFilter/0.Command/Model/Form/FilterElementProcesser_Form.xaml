@@ -24,6 +24,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <TextBox Text="Category : " FontWeight= "Bold" Margin="0 0 10 0"/>
@@ -37,10 +38,10 @@
 
             <TextBox Text="Parameter : " FontWeight= "Bold" Margin="0 8 10 0" Grid.Row="1"/>
 
-            <Grid  Grid.Column="1" Grid.Row="1" Margin="0 8 0 0" DataContext="{Binding Processor.ParameterProcesser}">
+            <Grid  Grid.Column="1" Grid.Row="1" Margin="0 8 0 0" DataContext="{Binding Processor.ParameterProcessor}">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100">
-                    </ColumnDefinition>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <ComboBox ItemsSource="{Binding Parameters}" DisplayMemberPath="Name" 
                           SelectedItem="{Binding SelectedParameter}"
@@ -48,7 +49,7 @@
                 <StackPanel Grid.Column="1" Margin=" 8 0 0 0" DataContext="{Binding SelectedParameter}">
                     <ComboBox ItemsSource="{Binding Values}"  
                           SelectedItem="{Binding SelectedValue}"
-                          DisplayMemberPath="value"
+                          DisplayMemberPath="Value"
                           />
                 </StackPanel>    
             </Grid>

@@ -57,7 +57,7 @@ namespace Model.RevitCommand
         public override void Execute()
         {
             var categoryProcesser = new FilterElementProcessor();
-            categoryProcesser.Categories = new List<Category>() { categoryProcesser.AllCategories[0] };
+            categoryProcesser.Categories = new Dict<Category>() { categoryProcesser.AllCategories[0] };
 
             var parameterProcesser = new FilterElementByParameterProcessor
             {

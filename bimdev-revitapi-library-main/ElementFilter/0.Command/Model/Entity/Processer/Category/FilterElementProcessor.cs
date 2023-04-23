@@ -28,7 +28,8 @@ namespace Model.Entity
 
         public List<Category> AllCategories => allcategories ??= this.GetAllCategories();
 
-        public List<Category> Categories { get; set; } = new List<Category>();
+        //public List<Category> Categories { get; set; } = new List<Category>();
+        public Dict<Category> Categories { get; set; } = new Dict<Category>();
 
         public List<ElementId> CategoryIds => this.Categories.Select(x => x.Id).ToList();
 
@@ -39,16 +40,16 @@ namespace Model.Entity
             set
             {
                 filterElementsByCategory = value;
-                this.RefreshParameterProcessor;
+                this.RefreshParameterProcessor();
             }
         }
-        private FilterElementByParameterProcessor? parameterProcesser;
-        public FilterElementByParameterProcessor ParameterProcesser
+        private FilterElementByParameterProcessor? parameterProcessor;
+        public FilterElementByParameterProcessor ParameterProcessor
         {
-            get => parameterProcesser ??= this.GetParameterProcesser();
+            get => parameterProcessor ??= this.GetParameterProcessor();
             set
             {
-                parameterProcesser = value;
+                parameterProcessor = value;
                 OnPropertyChanged();
             }
         }
