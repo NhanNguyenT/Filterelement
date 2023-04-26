@@ -32,7 +32,7 @@
             <c:MultiComboBox ItemsSource="{Binding Processor.AllCategories}" SelectedItems="{Binding Processor.Categories,Mode=TwoWay}"
                          SelectionMode="Multiple"  DisplayMemberPath="Name" DisplaySeparator=" , "
                              Width="400"
-                             HorizontalAlignment="Stretch" Grid.Column="1"/>
+                             HorizontalAlignment="Stretch" Grid.Column="1" />
 
             <Button Padding="12 3"  Grid.Column="2" VerticalAlignment="Center" Click="refresh_Clicked">Refresh</Button>
 
